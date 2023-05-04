@@ -4,12 +4,16 @@
 // Write a function that calculates the price of an order of apples given
 // the quantity bought. No hints this time!
 
-// I AM NOT DONE
 
 // Put your function here!
-// fn calculate_price_of_apples{
-
-// }
+fn calculate_price_of_apples(number_of_apples: usize) -> usize {
+    if number_of_apples > 40 {
+        let unit_price = 2_usize;
+        return number_of_apples * unit_price;
+    } else {
+        number_of_apples * 3 // "return" is not needed here if we don't finish the line with a semicolon! (implicit return)
+    }
+}
 
 
 // Do not change the tests!

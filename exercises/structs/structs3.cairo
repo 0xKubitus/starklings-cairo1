@@ -1,12 +1,13 @@
 // structs3.cairo
-// Structs contain data, but can also have logic. In this exercise we have
-// defined the Package struct and we want to test some logic attached to it.
+
+// Structs contain data, but can also have logic. 
+// In this exercise we have defined the Package struct and we want to test some logic attached to it.
 // Make the code compile and the tests pass!
 // Execute `starklings hint structs3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 use array::ArrayTrait;
+
 #[derive(Copy, Drop)]
 struct Package {
     sender_country: felt252,
@@ -16,8 +17,8 @@ struct Package {
 
 trait PackageTrait {
     fn new(sender_country: felt252, recipient_country: felt252, weight_in_grams: usize) -> Package;
-    fn is_international(ref self: Package) -> //???;
-    fn get_fees(ref self: Package, cents_per_gram: usize) -> //???;
+    fn is_international(ref self: Package) -> bool; 
+    fn get_fees(ref self: Package, cents_per_gram: usize) -> usize;
 }
 impl PackageImpl of PackageTrait {
     fn new(sender_country: felt252, recipient_country: felt252, weight_in_grams: usize) -> Package {
@@ -29,12 +30,16 @@ impl PackageImpl of PackageTrait {
         Package { sender_country, recipient_country, weight_in_grams,  }
     }
 
-    fn is_international(ref self: Package) -> //???
-    {/// Something goes here...
+    fn is_international(ref self: Package) -> bool {
+        if self.sender_country == self.recipient_country {
+            return false;
+        } else {
+            true
+        }
     }
 
-    fn get_fees(ref self: Package, cents_per_gram: usize) -> //???
-    {/// Something goes here...
+    fn get_fees(ref self: Package, cents_per_gram: usize) -> usize {
+        return self.weight_in_grams * cents_per_gram;
     }
 }
 
